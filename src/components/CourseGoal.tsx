@@ -1,25 +1,16 @@
 import type { FC, PropsWithChildren } from "react";
 
-// 1)
-// interface CourseGoalProps {
-//   title: string;
-//   description: string;
-//   children: ReactNode;
-// }
-// 2)
-// interface CourseGoalProps extends PropsWithChildren {
-//   title: string;
-//   description: string;
-//   children: ReactNode;
-// }
-// 3)
 type CourseGoalProps = PropsWithChildren<{
+  id: number;
   title: string;
   description: string;
+  onDelete: (id: number) => void;
 }>;
 export const CourseGoal: FC<CourseGoalProps> = ({
+  id,
   title,
   description,
+  onDelete,
   children,
 }) => {
   return (
@@ -28,7 +19,7 @@ export const CourseGoal: FC<CourseGoalProps> = ({
         <h2>{title}</h2>
         <p>{description}</p>
       </div>
-      <button>Delete</button>
+      <button onClick={() => onDelete(id)}>Delete</button>
       {children}
     </article>
   );
